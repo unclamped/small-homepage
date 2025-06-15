@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>maru's homepage</title>
+    <title>página de maru</title>
     <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
-    <meta content="maru's homepage" property="og:title" />
-    <meta content="ey! my name is Maru, and I like computers." property="og:description" />
+    <meta content="página de maru" property="og:title" />
+    <meta content="buenas! me llamo Maru, y me gustan las computadoras." property="og:description" />
     <meta content="https://maru.olcese.com.ar" property="og:url" />
     <meta content="https://maru.olcese.com.ar/maruloop.gif" property="og:image" />
     <meta content="#E15A97" data-react-helmet="true" name="theme-color" />
@@ -25,6 +25,7 @@
             --nc-lk-tx: #FFFFFF;
             --nc-ac-1: #7928CA;
             --nc-ac-tx: #FFFFFF;
+            --nc-
         }
 
         .house {
@@ -70,8 +71,12 @@
             background-color: rgba(255, 255, 255, 0.2);
         }
         
-        .es {
+        .en {
             display: none;
+        }
+        
+        .es {
+            display: inline;
         }
     </style>
 </head>
@@ -80,8 +85,8 @@
         <img class="header-gif" loading="lazy" src="maruloop.gif"> 
         <span class="en">maru's small homepage</span>
         <span class="es">mi pequeña página</span>
-        <a href="es.html" class="lang-switch-link">
-            <button class="lang-switch" id="langSwitch">🇦🇷</button>
+        <a href="index.html" class="lang-switch-link">
+            <button class="lang-switch" id="langSwitch">🇺🇸</button>
         </a>
     </header>
     <p class="en">ey! my name is Maru, and I {love, hate} computers.</p>
@@ -122,7 +127,7 @@
             const langSwitchLink = document.querySelector('.lang-switch-link');
             const enElements = document.querySelectorAll('.en');
             const esElements = document.querySelectorAll('.es');
-            let currentLang = 'en';
+            let currentLang = 'es';
             
             // Remove the default link behavior for JS users
             langSwitchLink.removeAttribute('href');
@@ -159,8 +164,8 @@
 
     <noscript>
         <style>
-            .en { display: inline; }
-            .es { display: none; }
+            .en { display: none; }
+            .es { display: inline; }
             .lang-switch-link { 
                 margin-left: auto;
             }
