@@ -58,7 +58,8 @@
         .lang-switch {
             margin-left: auto;
             border: none;
-            background: transparent;
+            background: var(--nc-lk-1);
+            color: var(--nc-lk-tx);
             cursor: pointer;
             font-size: 1rem;
             padding: 5px 10px;
@@ -67,7 +68,7 @@
         }
         
         .lang-switch:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: var(--nc-lk-2);
         }
         
         .es {
@@ -87,11 +88,13 @@
     <p class="en">ey! my name is Maru, and I {love, hate} computers.</p>
     <p class="en">for now, this is all there is to this "site". I don't know if I will ever have enough discipline or motivation to write a proper Neocities-like thingy with fancy animations and buttons and whatnot, but the mere fact of having <em>something</em> under this domain is already calming enough.</p>
     <p class="en">please harass me into continuing with this when summer vacations come around, or don't, that is assuming I haven't yet incinerated my computer.</p>
+    <p class="en">fun fact, I LOVE the underground scene in my city, Córdoba, and I'm currently making a website dedicated to it, called "undertracker"! I can't tell you how to access it, but I'll give you a hint: if you start going to shows in Córdoba, maybe, just maybe, if I'm at the same show as you, there's a chance there might be an invitation or two floating around... good luck ;)</p>
     <p class="en">oh yeah, and I'm currently reading <span class="house">House</span> of Leaves... yep, that's the only reason why I felt the need to say that, so I could make this stupid joke. I have a bit of brain damage from believing I was Superman when I was a child and jumping off the stairs in my home.</p>
 
     <p class="es">buenas! me llamo Maru, y {amo, odio} las computadoras.</p>
-    <p class="es">por ahora, esto es todo lo que hay en este "sitio". No sé si alguna vez tendré suficiente disciplina o motivación para escribir algo adecuado al estilo Neocities con animaciones y botones elegantes, pero el simple hecho de tener <em>algo</em> bajo este dominio ya es bastante reconfortante.</p>
-    <p class="es">por favor acósame para que continúe con esto cuando lleguen las vacaciones de verano, o no, eso asumiendo que aún no haya incinerado mi computadora.</p>
+    <p class="es">por ahora, esto es todo lo que hay en este "sitio". No sé si alguna vez tendré suficiente disciplina o motivación para escribir algo adecuado al estilo Neocities con animaciones y botones elegantes, pero el simple hecho de tener <em>algo</em> bajo este dominio ya me es sufi.</p>
+    <p class="es">por favor molestame para que continúe con esto cuando lleguen las vacaciones de verano, o no, eso asumiendo que aún no haya incinerado mi computadora.</p>
+    <p class="es">dato de color, AMO la escena underground de mi ciudad, Córdoba, y actualmente estoy haciendo un sitio web dedicada a ella, llamado "undertracker"! no puedo decirte como podés entrar, pero te tiro una pista, si empezás a ir a los recitales cordobeses, capaz, solo capaz, si estoy en el mismo recital que vos, existe la chance de que haya una que otra invitación dando vueltas... buena suerte ;)</p>
     <p class="es">ah sí, y actualmente estoy leyendo <span class="house">House</span> of Leaves... sí, esa es la única razón por la que sentí la necesidad de decir eso, para poder hacer este estúpido chiste. Tengo un poco de daño cerebral por creer que era Superman cuando era niño y saltar desde las escaleras de mi casa.</p>
 
     <div class="social-buttons">
@@ -144,14 +147,26 @@
             function toggleLanguage() {
                 if (currentLang === 'es') {
                     enElements.forEach(el => el.style.display = 'none');
-                    esElements.forEach(el => el.style.display = 'inline');
+                    esElements.forEach(el => {
+                        if (el.tagName === 'P') {
+                            el.style.display = 'block';
+                        } else {
+                            el.style.display = 'inline';
+                        }
+                    });
                     document.documentElement.lang = 'es';
-                    langSwitch.textContent = '🇺🇸'; // Show US flag while in Spanish mode
+                    langSwitch.textContent = '🇺🇸';
                 } else {
-                    enElements.forEach(el => el.style.display = 'inline');
                     esElements.forEach(el => el.style.display = 'none');
+                    enElements.forEach(el => {
+                        if (el.tagName === 'P') {
+                            el.style.display = 'block';
+                        } else {
+                            el.style.display = 'inline';
+                        }
+                    });
                     document.documentElement.lang = 'en';
-                    langSwitch.textContent = '🇦🇷'; // Show Argentina flag while in English mode
+                    langSwitch.textContent = '🇦🇷';
                 }
             }
         });
@@ -163,6 +178,9 @@
             .es { display: none; }
             .lang-switch-link { 
                 margin-left: auto;
+            }
+            p.en { 
+                display: block;
             }
         </style>
     </noscript>
