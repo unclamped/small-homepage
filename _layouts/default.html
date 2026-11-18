@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+    <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+    <meta content="{{ page.title | default: site.title }}" property="og:title" />
+    {% if page.excerpt %}<meta content="{{ page.excerpt | strip_html | strip | truncate: 160 }}" property="og:description" />{% endif %}
+    <meta content="{{ page.url | absolute_url }}" property="og:url" />
+    <meta content="{{ '/maruloop.gif' | absolute_url }}" property="og:image" />
+    <meta content="#E15A97" name="theme-color" />
+    <style>
+        :root {
+            --nc-tx-1: #ffffff;
+            /* ty maia for the colors, https://maia.crimew.gay/ */
+            --nc-tx-2: #5c357c;
+            --nc-bg-1: #feafd6;
+            --nc-bg-2: #feafd6;
+            --nc-bg-3: #000000;
+            --nc-lk-1: #E15A97;
+            /* https://coolors.co/861388-e15a97-eeabc4-c799a6-4b2840 */
+            --nc-lk-2: #ac205f;
+            --nc-lk-tx: #FFFFFF;
+            --nc-ac-1: #7928CA;
+            --nc-ac-tx: #FFFFFF;
+        }
+
+        .header-gif {
+            height: 50px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .lang-switch {
+            margin-left: auto;
+            border: none;
+            background: var(--nc-lk-1);
+            color: var(--nc-lk-tx);
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .lang-switch:hover {
+            background-color: var(--nc-lk-2);
+        }
+
+        .post-date {
+            color: var(--nc-tx-2);
+        }
+
+        /* language toggle: same localStorage key as the homepage */
+        html:not([data-lang="es"]) .es,
+        html[data-lang="es"] .en {
+            display: none;
+        }
+    </style>
+    <script>
+        try {
+            if (localStorage.getItem('language') === 'es') {
+                document.documentElement.dataset.lang = 'es';
+                document.documentElement.lang = 'es';
+            }
+        } catch (e) {}
+    </script>
+</head>
+<body>
+    <header>
+        <img class="header-gif" loading="lazy" src="/maruloop.gif" alt="">
+        <span class="en">maru's blog</span>
+        <span class="es">el blog de maru</span>
+        <button class="lang-switch" id="langSwitch" hidden></button>
+    </header>
+    <p>
+        <a class="en" href="/">← home</a><a class="es" href="/es.html">← inicio</a>
+        {% if page.layout == "post" %} · <a href="{{ '/blog/' | relative_url }}"><span class="en">all posts</span><span class="es">todos los posts</span></a>{% endif %}
+    </p>
+
+    {{ content }}
+
+    <script>
+        (function () {
+            const root = document.documentElement;
+            const btn = document.getElementById('langSwitch');
+            function render() {
+                btn.textContent = root.dataset.lang === 'es' ? '🇺🇸' : '🇦🇷';
+            }
+            btn.hidden = false;
+            render();
+            btn.addEventListener('click', function () {
+                const lang = root.dataset.lang === 'es' ? 'en' : 'es';
+                root.dataset.lang = lang;
+                root.lang = lang;
+                try { localStorage.setItem('language', lang); } catch (e) {}
+                render();
+            });
+        })();
+    </script>
+</body>
+</html>

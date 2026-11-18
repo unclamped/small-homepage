@@ -1,0 +1,19 @@
+title: maru's blog
+url: https://maru.olcese.com.ar
+timezone: America/Argentina/Cordoba
+
+# Jekyll skips dotfiles by default; keep the Discord verification file published
+include:
+  - .well-known
+
+exclude:
+  - LICENSE
+
+# every post uses the "post" layout, so I don't have to write it each time
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      permalink: /blog/:year/:month/:day/:title/

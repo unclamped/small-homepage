@@ -1,0 +1,17 @@
+---
+layout: default
+---
+<h1><span class="en">all posts</span><span class="es">todos los posts</span></h1>
+
+{% if site.posts.size > 0 %}
+<ul>
+    {% for post in site.posts %}
+    <li>
+        <small class="post-date">{{ post.date | date: "%d/%m/%Y" }}</small> —
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p><span class="en">nothing here yet...</span><span class="es">todavía no hay nada...</span></p>
+{% endif %}

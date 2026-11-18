@@ -1,0 +1,30 @@
+<style>
+    .blog-preview {
+        border: 2px solid var(--nc-lk-1);
+        border-radius: 8px;
+        padding: 0 1rem 1rem;
+        margin: 2rem 0;
+    }
+
+    .blog-preview h3 {
+        margin-bottom: 0;
+    }
+
+    .blog-preview .post-date {
+        color: var(--nc-tx-2);
+    }
+</style>
+
+{% assign latest = site.posts.first %}
+<section class="blog-preview">
+    <p><strong class="en">latest from the blog</strong><strong class="es">lo último del blog</strong></p>
+    {% if latest %}
+        <h3><a href="{{ latest.url | relative_url }}">{{ latest.title }}</a></h3>
+        <small class="post-date">{{ latest.date | date: "%d/%m/%Y" }}</small>
+        {{ latest.excerpt }}
+    {% else %}
+        <p class="en">nothing here yet...</p>
+        <p class="es">todavía no hay nada...</p>
+    {% endif %}
+    <a href="{{ '/blog/' | relative_url }}"><button><span class="en">all posts →</span><span class="es">todos los posts →</span></button></a>
+</section>
